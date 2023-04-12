@@ -1,13 +1,13 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
-import {fas} from '@fortawesome/free-solid-svg-icons';
-import {library} from '@fortawesome/fontawesome-svg-core'
-import {BehaviorSubject, delay, fromEvent, Subject, takeUntil, tap} from 'rxjs';
-import {style, animate, trigger, transition, state} from '@angular/animations';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { BehaviorSubject, delay, fromEvent, Subject, takeUntil, tap } from 'rxjs';
+import { style, animate, trigger, transition, state } from '@angular/animations';
 
 /**
  * Entire icon set
  */
-library.add(fas)
+library.add(fas);
 
 @Component({
   selector: 'app-random-icon-button',
@@ -19,17 +19,17 @@ library.add(fas)
       state('open', style({
         height: '6rem',
         opacity: 1,
-        backgroundColor: 'cornsilk'
+        backgroundColor: 'cornsilk',
       })),
       state('closed', style({
         height: '0px',
         opacity: 0.8,
       })),
       transition('open => closed', [
-        animate('1s')
+        animate('1s'),
       ]),
       transition('closed => open', [
-        animate('0.5s')
+        animate('0.5s'),
       ]),
     ]),
   ],
@@ -40,7 +40,7 @@ export class RandomIconButtonComponent implements AfterViewInit, OnDestroy {
    * Instance of button on template
    * @private
    */
-  @ViewChild('button', {read: ElementRef})
+  @ViewChild('button', { read: ElementRef })
   private button!: ElementRef;
 
   /**
@@ -52,7 +52,7 @@ export class RandomIconButtonComponent implements AfterViewInit, OnDestroy {
    * For managing subscriptions
    * @private
    */
-  private subject$: Subject<null> = new Subject()
+  private subject$: Subject<null> = new Subject();
 
   /**
    * For managing loading state
@@ -63,14 +63,14 @@ export class RandomIconButtonComponent implements AfterViewInit, OnDestroy {
     fromEvent(this.button.nativeElement, 'click')
       .pipe(tap(() => this.loading$.next(true)), delay(3000), takeUntil(this.subject$))
       .subscribe(() => {
-        this.randomIcon$.next(this.getRandomIcon())
+        this.randomIcon$.next(this.getRandomIcon());
         this.loading$.next(false);
-      })
+      });
   }
 
   public ngOnDestroy(): void {
-    this.subject$.next(null)
-    this.subject$.complete()
+    this.subject$.next(null);
+    this.subject$.complete();
   }
 
   /**
