@@ -1,14 +1,11 @@
-
-.container {
-
-}
-
-button {
-  z-index: 30;
-}
-
 .icon {
   font-size: 4rem;
-  margin-top: 1rem;
   text-align: center;
+}
+.mat-card {
+  padding: 0px;
+}
+
+.mat-card mat-card-footer {
+  margin-top: 8px;
 }

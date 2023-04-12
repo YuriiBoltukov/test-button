@@ -17,14 +17,13 @@ library.add(fas)
   animations: [
     trigger('openClose', [
       state('open', style({
-        height: '200px',
+        height: '6rem',
         opacity: 1,
-        backgroundColor: 'yellow'
+        backgroundColor: 'cornsilk'
       })),
       state('closed', style({
-        height: '100px',
+        height: '0px',
         opacity: 0.8,
-        backgroundColor: 'blue'
       })),
       transition('open => closed', [
         animate('1s')

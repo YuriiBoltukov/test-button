@@ -1,6 +1,6 @@
 <div class="container">
   <button #button mat-raised-button color="primary">Show Random Icon</button>
-  <mat-card class="example-card"  [@openClose]="(randomIcon$ | async) ? 'open' : 'closed'">
+  <mat-card class="mat-card"  [@openClose]="(randomIcon$ | async) ? 'open' : 'closed'">
     <mat-card-content>
       <div  class="icon">
         <i [class]="randomIcon$ | async"></i>
