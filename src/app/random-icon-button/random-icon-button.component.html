@@ -1,0 +1,7 @@
+<div class="center">
+  <button (click)="getRandomIcon()">Show Random Icon</button>
+  <br><br>
+  <div *ngIf="randomIcon" class="icon">
+    <i [ngClass]="randomIcon"></i>
+  </div>
+</div>
