@@ -1,12 +1,14 @@
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100vh;
+
+.container {
+
+}
+
+button {
+  z-index: 30;
 }
 
 .icon {
   font-size: 4rem;
   margin-top: 1rem;
+  text-align: center;
 }

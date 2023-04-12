@@ -1,8 +1,13 @@
-<div class="center">
-  <button (click)="getRandomIcon()">Show Random Icon</button>
-  <br><br>
-  <div class="icon">
-    <i [ngClass]="randomIcon"></i>
-  </div>
+<div class="container">
+  <button #button mat-raised-button color="primary">Show Random Icon</button>
+  <mat-card class="example-card"  [@openClose]="(randomIcon$ | async) ? 'open' : 'closed'">
+    <mat-card-content>
+      <div  class="icon">
+        <i [class]="randomIcon$ | async"></i>
+      </div>
+    </mat-card-content>
+    <mat-card-footer>
+      <mat-progress-bar *ngIf="loading$ | async" mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer>
+  </mat-card>
 </div>
-
