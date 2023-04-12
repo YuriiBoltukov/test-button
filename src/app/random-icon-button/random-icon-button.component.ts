@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { IconService } from '../icon.service';
+import { delay, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-random-icon-button',
@@ -7,18 +9,16 @@ import { Component } from '@angular/core';
 })
 export class RandomIconButtonComponent {
   randomIcon: string = '';
-
+  constructor(private iconService: IconService) { }
   getRandomIcon() {
-    const icons = [
-      'fas fa-address-book',
-      'fas fa-adjust',
-      'fas fa-anchor',
-      'fas fa-star'
-    ];
-    const randomIndex = Math.floor(Math.random() * icons.length);
-    this.randomIcon = icons[randomIndex];
-    setTimeout(() => {
-      this.randomIcon = '';
-    }, 10000);
+    this.iconService.getIcons()
+      .pipe(
+        delay(3000),
+        tap(icons => {
+          const randomIndex = Math.floor(Math.random() * icons.length);
+          this.randomIcon = `fas fa-${icons[randomIndex].id}`;
+        })
+      )
+      .subscribe();
   }
 }
