@@ -1,7 +1,7 @@
 import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
 import {fas} from '@fortawesome/free-solid-svg-icons';
 import {library} from '@fortawesome/fontawesome-svg-core'
-import {BehaviorSubject, debounceTime, fromEvent, Subject, takeUntil, tap} from 'rxjs';
+import {BehaviorSubject, delay, fromEvent, Subject, takeUntil, tap} from 'rxjs';
 import {style, animate, trigger, transition, state} from '@angular/animations';
 
 /**
@@ -61,7 +61,7 @@ export class RandomIconButtonComponent implements AfterViewInit, OnDestroy {
 
   public ngAfterViewInit(): void {
     fromEvent(this.button.nativeElement, 'click')
-      .pipe(tap(() => this.loading$.next(true)), debounceTime(3000), takeUntil(this.subject$))
+      .pipe(tap(() => this.loading$.next(true)), delay(3000), takeUntil(this.subject$))
       .subscribe(() => {
         this.randomIcon$.next(this.getRandomIcon())
         this.loading$.next(false);
